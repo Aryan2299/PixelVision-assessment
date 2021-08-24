@@ -7,6 +7,7 @@ const Dashboard = () => {
   const userContext = React.useContext(UserContext);
 
   const [uuidGenerated, setUuidGenerated] = React.useState();
+  const [taskInfo, setTaskInfo] = React.useState({});
 
   const { baseUrl } = constants;
 
@@ -23,11 +24,23 @@ const Dashboard = () => {
     })
       .then((res) => res.json())
       .then((res) => {
-        // setUuidGenerated(res.data.uuid);
-        console.log(res);
+        setUuidGenerated(res.uuid);
+        console.log(res.uuid);
       })
       .catch((err) => console.error("Error: Couldn't schedule task", err));
   };
+
+  const getTaskInfo = () => {
+    fetch(`${baseUrl}/task/${uuidGenerated}/info`)
+      .then((res) => res.json())
+      .then((res) => {
+        setTaskInfo(res);
+        console.log(res);
+      })
+      .catch((err) => console.error("Error: Couldn't fetch task info", err));
+  };
+
+  React.useEffect(() => getTaskInfo(), [uuidGenerated]);
 
   return (
     <div>
