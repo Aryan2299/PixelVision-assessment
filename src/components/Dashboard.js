@@ -2,6 +2,7 @@ import React from "react";
 import { Redirect } from "react-router";
 import { UserContext } from "../UserContext";
 import { constants } from "../utils/static/constants";
+import CalenderWidget from "./CalenderWidget";
 
 const Dashboard = () => {
   const userContext = React.useContext(UserContext);
@@ -45,6 +46,7 @@ const Dashboard = () => {
   return (
     <div>
       <h1>Welcome, {userContext.name}</h1>
+      <CalenderWidget />
       <input
         type="file"
         id="images-file"
