@@ -7,29 +7,26 @@ const Dashboard = () => {
   const userContext = React.useContext(UserContext);
 
   const [uuidGenerated, setUuidGenerated] = React.useState();
-  const [fileUploaded, setFileUploaded] = React.useState(false);
 
   const { baseUrl } = constants;
-  const formData = new FormData();
 
   const uploadFile = (file) => {
+    const formData = new FormData();
     formData.append("images", file);
-    setFileUploaded(true);
+    getUuid(formData);
   };
 
-  const getUuid = () => {
-    if (fileUploaded) {
-      fetch(`${baseUrl}/task/new`, {
-        method: "post",
-        body: JSON.stringify({ zipUrl: "zipUrl", formData }),
+  const getUuid = (formData) => {
+    fetch(`${baseUrl}/task/new`, {
+      method: "post",
+      body: formData,
+    })
+      .then((res) => res.json())
+      .then((res) => {
+        // setUuidGenerated(res.data.uuid);
+        console.log(res);
       })
-        .then((res) => res.json())
-        .then((res) => {
-          // setUuidGenerated(res.data.uuid);
-          console.log(res);
-        })
-        .catch((err) => console.error("Error: Couldn't schedule task", err));
-    }
+      .catch((err) => console.error("Error: Couldn't schedule task", err));
   };
 
   return (
@@ -38,11 +35,11 @@ const Dashboard = () => {
       <input
         type="file"
         id="images-file"
-        onChange={(e) => uploadFile(e.target.files[0])}
+        onChange={(e) => {
+          uploadFile(e.target.files[0]);
+          console.log("files: ", e.target.files[0]);
+        }}
       />
-      <button type="button" onClick={getUuid}>
-        Submit
-      </button>
     </div>
   );
 };
