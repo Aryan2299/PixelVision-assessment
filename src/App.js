@@ -1,20 +1,20 @@
 import React from "react";
-import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+  Redirect,
+} from "react-router-dom";
 import "./App.css";
 import Dashboard from "./components/Dashboard";
 import Login from "./components/Login";
 import { UserContext } from "./UserContext";
 
 function App() {
+  // const userContext = React.useContext(UserContext);
+
   return (
-    <UserContext.Provider
-      value={{
-        user: {
-          name: null,
-          email: null,
-        },
-      }}
-    >
+    <UserContext.Provider value={{ user: { email: null, name: null } }}>
       <Router>
         <Switch>
           <Route path="/login">
@@ -22,6 +22,9 @@ function App() {
           </Route>
           <Route path="/user/dashboard">
             <Dashboard />
+          </Route>
+          <Route path="/">
+            <Redirect to="/login" />
           </Route>
         </Switch>
       </Router>

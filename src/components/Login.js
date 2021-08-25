@@ -36,8 +36,8 @@ const Login = () => {
             userContext,
             email,
             password,
-            setErrorMessage,
-            setRedirect
+            setRedirect,
+            setErrorMessage
           )
         }
       >

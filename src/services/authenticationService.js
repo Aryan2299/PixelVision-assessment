@@ -19,13 +19,15 @@ export const authenticateUser = (
       bcrypt.hash(password, 10).then(async () => {
         let match = await bcrypt.compare(password, user.password);
         if (match) {
-          userContext.name = user.name;
-          userContext.email = user.email;
+          userContext.user.name = user.name;
+          userContext.user.email = user.email;
           setRedirect(true);
+          return true;
         } else {
           setErrorMessage("Invalid email/password. Please try again.");
           setRedirect(false);
           console.log("Error: Incorrect password");
+          return false;
         }
       });
     }
