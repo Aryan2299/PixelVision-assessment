@@ -1,21 +1,11 @@
 import React from "react";
-import {
-  BrowserRouter as Router,
-  Switch,
-  Route,
-  Link,
-  Redirect,
-} from "react-router-dom";
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import "./App.css";
 import Dashboard from "./components/Dashboard";
 import Login from "./components/Login";
-import RunningTaskInfo from "./components/RunningTaskInfo";
-import { User } from "./models/User";
 import { UserContext } from "./UserContext";
 
 function App() {
-  const userContext = React.useContext(UserContext);
-
   return (
     <UserContext.Provider
       value={{

@@ -1,28 +1,21 @@
 import React from "react";
-import { constants } from "../utils/static/constants";
+import { getDayOfWeek } from "../services/calenderService";
 
 const CalenderWidget = () => {
-  const [inputDate, setInputDate] = React.useState();
+  const [inputDate, setInputDate] = React.useState("");
   const [dayOfWeek, setDayOfWeek] = React.useState();
 
-  const getDayOfWeek = () => {
-    const day = new Date(inputDate);
-    const dayOfWeekIndex = new Date(inputDate).getDay();
-
-    if (isNaN(dayOfWeekIndex)) {
-      setDayOfWeek("Invalid date");
-    } else {
-      setDayOfWeek(constants.daysOfWeek[dayOfWeekIndex]);
-    }
-  };
   return (
     <div>
       <input type="text" onChange={(e) => setInputDate(e.target.value)} />
       <p>yyyy-mm-dd</p>
-      <button type="button" onClick={getDayOfWeek}>
+      <button
+        type="button"
+        onClick={() => getDayOfWeek(inputDate, setDayOfWeek)}
+      >
         Find out
       </button>
-      {dayOfWeek}
+      <span>{dayOfWeek}</span>
     </div>
   );
 };
