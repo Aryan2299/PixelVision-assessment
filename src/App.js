@@ -9,6 +9,7 @@ import {
 import "./App.css";
 import Dashboard from "./components/Dashboard";
 import Login from "./components/Login";
+import RunningTaskInfo from "./components/RunningTaskInfo";
 import { User } from "./models/User";
 import { UserContext } from "./UserContext";
 
