@@ -20,6 +20,7 @@ const getTaskInfo = async (uuid, setTaskInfo, setTaskOutput) => {
     let response = await axios.get(`${baseUrl}/task/${uuid}/info`);
     if (response) {
       const exposedObject = extractValuesFromObject(response);
+      exposedObject.push(["---------fetching task output-----------", ""]);
       setTaskInfo(exposedObject);
       setTimeout(() => {
         getTaskOutput(uuid, setTaskOutput);

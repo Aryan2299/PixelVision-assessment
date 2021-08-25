@@ -5,6 +5,11 @@ import CalenderWidget from "./CalenderWidget";
 import { uploadFile } from "../services/requestsService";
 import TaskInformation from "./TaskInformation";
 import TaskOutput from "./TaskOutput";
+import {
+  fileInputStyle,
+  innerDivStyle,
+  outerDivStyle,
+} from "../services/userDashboardStyle";
 
 const Dashboard = () => {
   const userContext = React.useContext(UserContext);
@@ -13,26 +18,45 @@ const Dashboard = () => {
   const [taskOutput, setTaskOutput] = React.useState(null);
 
   return (
-    <div>
-      <h1>Welcome, {userContext.name}</h1>
+    <div style={outerDivStyle}>
       <CalenderWidget />
-      <input
-        type="file"
-        id="images-file"
-        onChange={(e) => {
-          uploadFile(e.target.files[0], setTaskInfo, setTaskOutput);
-        }}
-      />
-      <ul>
-        {Array.isArray(taskInfo) ? (
-          <TaskInformation taskInfo={taskInfo} />
-        ) : null}
-      </ul>
-      <ul>
-        {Array.isArray(taskOutput) ? (
-          <TaskOutput taskOutput={taskOutput} />
-        ) : null}
-      </ul>
+
+      <div style={innerDivStyle}>
+        <h1
+          style={{
+            textAlign: "center",
+            width: "100%",
+          }}
+        >
+          Schedule Tasks
+        </h1>
+        <h4 style={{ margin: "0px 10px" }}>Upload image to continue</h4>
+        <input
+          type="file"
+          id="images-file"
+          style={fileInputStyle}
+          onChange={(e) => {
+            uploadFile(e.target.files[0], setTaskInfo, setTaskOutput);
+          }}
+        />
+        <ul>
+          {Array.isArray(taskInfo) ? (
+            <div>
+              <h4>Task Details</h4>
+              <TaskInformation taskInfo={taskInfo} />
+            </div>
+          ) : null}
+        </ul>
+
+        <ul>
+          {Array.isArray(taskOutput) ? (
+            <div>
+              <h4>Task Output</h4>
+              <TaskOutput taskOutput={taskOutput} />
+            </div>
+          ) : null}
+        </ul>
+      </div>
     </div>
   );
 };

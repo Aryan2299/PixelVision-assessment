@@ -12,3 +12,38 @@
   font-size: calc(10px + 2vmin);
   color: white;
 }
+
+input {
+  /* background-color: #eee; */
+  background: #f6f5f7;
+  border: none;
+  border-bottom: 1px solid #212121;
+  padding: 12px 15px;
+  font-size: 15px;
+  margin: 8px 0;
+  width: 50%;
+  outline: none;
+  margin: 10px 0px;
+}
+
+input:focus {
+  outline: none;
+}
+
+button {
+  background-color: black;
+  border: 1px solid #f6f5f7;
+  color: white;
+  padding: 2% 15%;
+  border-radius: 3px;
+}
+
+button:hover {
+  background-color: #f6f5f7;
+  border: 1px solid black;
+  color: black;
+}
+
+li {
+  list-style: none;
+}
