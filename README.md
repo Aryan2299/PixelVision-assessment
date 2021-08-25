@@ -1,3 +1,26 @@
+# API DOCS
+  ### GET /login 
+    Login using username and password
+  ### GET /user/dashboard 
+    View user dashboard if authenticated
+  
+To run the code
+  - Clone **https://github.com/OpenDroneMap/NodeODM**
+  - Run the following command to setup project using Docker - **docker run -p 3000:3000 opendronemap/nodeodm**
+  - Ensure that the docker server is listening on **http://0.0.0.0:3000**
+  - Clone this project
+  - Run the following commands 
+     - install **node_modules** - **npm install**
+     - run the project - **npm start** (change port via terminal on prompt)
+
+
+
+
+
+
+
+
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
